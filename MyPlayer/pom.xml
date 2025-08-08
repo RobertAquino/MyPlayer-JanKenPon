@@ -32,7 +32,8 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>/home/robert/MyPlayer-JanKenPon/JanKenPonManager/players</outputDirectory>
+                            <outputDirectory>C:\\dev\\projects\\javase\\JanKenPonManager\\
+players</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}</directory>

@@ -57,11 +57,11 @@ public class MyPlayer extends AbstractPlayer {
                     case 2:
                         return Move.ROCK;
                     default:
-                        return Move.SCISSORS; // Fallback, embora não necessário
+                        return Move.SCISSORS; 
                 }
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(MyPlayer.class.getName()).log(Level.SEVERE, null, ex);
-                return Move.PAPER; // Retorno padrão em caso de erro
+                return Move.PAPER;
             }
         }
 
