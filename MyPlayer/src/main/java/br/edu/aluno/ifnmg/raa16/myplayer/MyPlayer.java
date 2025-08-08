@@ -45,7 +45,7 @@ public class MyPlayer extends AbstractPlayer {
             isThird = false;
             return Move.PAPER;
         }
-        if (count <= 10) {
+        if (count <= 50 || (count > 100 && count <= 130)) {
             count++;
             try {
                 int randomChoice = SecureRandom.getInstanceStrong().nextInt(3);
@@ -65,7 +65,7 @@ public class MyPlayer extends AbstractPlayer {
             }
         }
 
-        if (count > 10 && count <= 30) {
+        if ((count > 50 && count <= 80) || (count > 130 && count <= 150) || (count > 175)) {
             if (countPosAleatorio == 0) {
                 count++;
                 countPosAleatorio++;
@@ -85,25 +85,23 @@ public class MyPlayer extends AbstractPlayer {
             }
         }
         
-        if(count > 30 && count <=35)
+        if((count > 80 && count <=83) || (count > 150 && count <= 153))
         {
+           count++;
            return Move.ROCK;
         }
-        if(count > 35 && count <=40)
+        if((count > 83 && count <=86) || (count > 153 && count <= 156))
         {
-           return Move.SCISSORS;
+            count++;
+            return Move.SCISSORS;
         }
-        if(count > 40 && count <=50)
+        if((count > 86 && count <=90) || (count > 156 && count <= 160))
         {
-           return Move.PAPER;
-        }
-        
-        if(count > 50 && count <= 60)
-        {
-            return opponentPreviousMove;
+            count++;
+            return Move.PAPER;
         }
         
-        if(count > 60 && count <= 100)
+        if((count > 90 && count <= 100) || (count > 160 && count <= 175))
         {
             if(opponentPreviousMove == Move.PAPER)
             {
