@@ -20,7 +20,6 @@ public class MyPlayer extends AbstractPlayer {
     public boolean isSecond = false;
     public boolean isThird = false;
     public static int count;
-    public static int posAleatorio = 0;
     public static int countPosAleatorio = 0;
 
     @Override
@@ -46,7 +45,7 @@ public class MyPlayer extends AbstractPlayer {
             isThird = false;
             return Move.PAPER;
         }
-        if (count < 10) {
+        if (count <= 10) {
             count++;
             try {
                 int randomChoice = SecureRandom.getInstanceStrong().nextInt(3);
@@ -66,23 +65,60 @@ public class MyPlayer extends AbstractPlayer {
             }
         }
 
-        if (posAleatorio < 20) {
+        if (count > 10 && count <= 30) {
             if (countPosAleatorio == 0) {
-                posAleatorio++;
+                count++;
                 countPosAleatorio++;
                 return Move.SCISSORS;
             }
             if(countPosAleatorio == 1)
             {
-                posAleatorio++;
+                count++;
                 countPosAleatorio++;
                 return Move.ROCK;
             }
             if(countPosAleatorio == 2)
             {
-                posAleatorio++;
+                count++;
                 countPosAleatorio = 0;
                 return Move.PAPER;
+            }
+        }
+        
+        if(count > 30 && count <=35)
+        {
+           return Move.ROCK;
+        }
+        if(count > 35 && count <=40)
+        {
+           return Move.SCISSORS;
+        }
+        if(count > 40 && count <=50)
+        {
+           return Move.PAPER;
+        }
+        
+        if(count > 50 && count <= 60)
+        {
+            return opponentPreviousMove;
+        }
+        
+        if(count > 60 && count <= 100)
+        {
+            if(opponentPreviousMove == Move.PAPER)
+            {
+                count++;
+                return Move.PAPER;
+            }
+            if(opponentPreviousMove == Move.SCISSORS)
+            {
+                count++;
+                return Move.SCISSORS;
+            }
+            if(opponentPreviousMove == Move.ROCK)
+            {
+                count++;
+                return Move.SCISSORS;
             }
         }
 
