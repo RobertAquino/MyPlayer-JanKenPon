@@ -18,7 +18,10 @@ public class MyPlayer extends AbstractPlayer {
 
     public boolean isFirst = true;
     public boolean isSecond = false;
-    public int count;
+    public boolean isThird = false;
+    public static int count;
+    public static int posAleatorio = 0;
+    public static int countPosAleatorio = 0;
 
     @Override
     public String getDeveloperName() {
@@ -35,27 +38,54 @@ public class MyPlayer extends AbstractPlayer {
         }
         if (isSecond) {
             isSecond = false;
+            isThird = true;
             return Move.SCISSORS;
         }
-        if(count < 10) {
+        if(isThird)
+        {
+            isThird = false;
+            return Move.PAPER;
+        }
+        if (count < 10) {
+            count++;
             try {
-            int randomChoice = SecureRandom.getInstanceStrong().nextInt(3);
-            switch (randomChoice) {
-                case 0:
-                    return Move.PAPER;
-                case 1:
-                    return Move.SCISSORS;
-                case 2:
-                    return Move.ROCK;
-                default:
-                    return Move.SCISSORS; // Fallback, embora não necessário
+                int randomChoice = SecureRandom.getInstanceStrong().nextInt(3);
+                switch (randomChoice) {
+                    case 0:
+                        return Move.PAPER;
+                    case 1:
+                        return Move.SCISSORS;
+                    case 2:
+                        return Move.ROCK;
+                    default:
+                        return Move.SCISSORS; // Fallback, embora não necessário
+                }
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(MyPlayer.class.getName()).log(Level.SEVERE, null, ex);
+                return Move.PAPER; // Retorno padrão em caso de erro
             }
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(MyPlayer.class.getName()).log(Level.SEVERE, null, ex);
-            return Move.PAPER; // Retorno padrão em caso de erro
         }
-           
+
+        if (posAleatorio < 20) {
+            if (countPosAleatorio == 0) {
+                posAleatorio++;
+                countPosAleatorio++;
+                return Move.SCISSORS;
+            }
+            if(countPosAleatorio == 1)
+            {
+                posAleatorio++;
+                countPosAleatorio++;
+                return Move.ROCK;
+            }
+            if(countPosAleatorio == 2)
+            {
+                posAleatorio++;
+                countPosAleatorio = 0;
+                return Move.PAPER;
+            }
         }
+
         return Move.SCISSORS;
     }
 }
