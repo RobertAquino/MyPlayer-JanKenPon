@@ -119,6 +119,10 @@ public class MyPlayer extends AbstractPlayer {
                 return Move.SCISSORS;
             }
         }
+        if(count == 196)
+        {
+            count = 0;
+        }
 
         return Move.SCISSORS;
     }
